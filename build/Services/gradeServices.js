@@ -14,9 +14,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const gradeSchema_1 = __importDefault(require("../Models/gradeSchema"));
+const userSchema_1 = require("../Models/userSchema");
 class GradeServices {
 }
 _a = GradeServices;
+GradeServices.getStudentIdByEmail = (Email) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const studentData = yield userSchema_1.UserModel.findOne({ Email });
+        if (studentData)
+            return studentData._id;
+    }
+    catch (err) {
+        console.log(err);
+    }
+});
 GradeServices.assign = (grades) => __awaiter(void 0, void 0, void 0, function* () {
     let newGrade = yield gradeSchema_1.default.create(grades);
     return newGrade;

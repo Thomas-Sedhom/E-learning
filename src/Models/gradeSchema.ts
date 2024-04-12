@@ -1,4 +1,5 @@
 import mongoose, { Schema } from "mongoose";
+import {string} from "joi";
 
 let gradeSchema = new mongoose.Schema({
     studentId: {
@@ -7,6 +8,10 @@ let gradeSchema = new mongoose.Schema({
     },
     courseId: {
         type: Schema.Types.ObjectId,
+        require: true
+    },
+    courseTitle: {
+        type: String,
         require: true
     },
     grade: {

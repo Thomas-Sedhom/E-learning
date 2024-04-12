@@ -1,6 +1,6 @@
 import {Request, Response} from "express";
 import CourseServices from "../Services/courseServices";
-import { Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import Course from "../Types/course";
 
 class CourseController{
@@ -8,8 +8,8 @@ class CourseController{
         try
         {
             let professorId: Schema.Types.ObjectId | any = req.params.professorId;
-            const {title, description, image} = req.body;
-            let course: Course = {title, description, image, professorId}
+            const {title, description, professorName, image} = req.body;
+            let course: Course = {title, description, image, professorName, professorId }
             const courseData = await CourseServices.creatCourse(course)
             res.send(courseData);
         }catch(err){
@@ -43,6 +43,7 @@ class CourseController{
             const courseId : Schema.Types.ObjectId | any = req.params.courseId;
             const EnrolledStudents = await CourseServices.getEnrolledStudents(courseId);
             const students = [... EnrolledStudents];
+            console.log(students)
             res.json(students);
         }catch(err){
             console.log(err);
@@ -51,15 +52,14 @@ class CourseController{
 
     static assignNewStudent = async (req: Request, res: Response) => {
         try{
-            const courseId : Schema.Types.ObjectId | any = req.params.courseId;
-            const userId: Schema.Types.ObjectId | any = req.params.userId;
+            const courseId : String | any = req.params.courseId;
+            const userId: String | any = req.params.userId;
             const updatedCourseData = await CourseServices.assignNewStudent(userId, courseId);
             res.json(updatedCourseData);
         }catch(err){
             console.log(err);
         }
     }
-
     static dropStudent = async (req: Request, res: Response) => {
         try{
             const courseId : Schema.Types.ObjectId | any = req.params.courseId;
@@ -73,8 +73,8 @@ class CourseController{
 
     static getAllCourses = async (req: Request, res: Response) => {
         try{
-            const updatedCourseData = await CourseServices.getAllCourses();
-            res.json(updatedCourseData);
+            const allCourses = await CourseServices.getAllCourses();
+            res.json(allCourses);
         }catch(err){
             console.log(err);
         }
@@ -82,7 +82,7 @@ class CourseController{
 
     static getSpecificCourse = async (req: Request, res: Response) => {
         try{
-            let courseId: Schema.Types.ObjectId | any = req.params.courseId;
+            let courseId: String | any = req.params.courseId;
             const updatedCourseData = await CourseServices.getSpecificCourse(courseId);
             res.json(updatedCourseData);
         }catch(err){

@@ -33,6 +33,10 @@ let gradeSchema = new mongoose_1.default.Schema({
         type: mongoose_1.Schema.Types.ObjectId,
         require: true
     },
+    courseTitle: {
+        type: String,
+        require: true
+    },
     grade: {
         type: Number,
         require: true,

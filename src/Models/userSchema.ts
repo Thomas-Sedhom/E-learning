@@ -1,5 +1,10 @@
-import mongoose from "mongoose";
-import joi from "joi";
+import mongoose, {Model} from "mongoose";
+import joi, {string} from "joi";
+import {UserTypeEnum} from "../Enums/UserType.enum";
+import Login from "../Types/login";
+import bcrypt from "bcrypt";
+import express from 'express'
+
 
 let userSchema = new mongoose.Schema({
     firstName: {
@@ -22,22 +27,18 @@ let userSchema = new mongoose.Schema({
     role: {
         type: String,
         require: true,
-        default: "student"
     },
     createdAt: {
         type: Date,
         default: Date.now()
     }
 });
-
-let JoiVal = joi.object({
+ let JoiVal = joi.object({
     firstName: joi.string().required,
     lastName: joi.string().required,
     Email: joi.string().email().required,
     password: joi.string().required,
-    role: joi.string().required
 });
-
-let UserModel = mongoose.model("users", userSchema);
+ const UserModel = mongoose.model("users", userSchema);
 
 export {UserModel, JoiVal};

@@ -9,5 +9,5 @@ const gradeController_1 = __importDefault(require("../Controllers/gradeControlle
 gradeRouter.post("/assign", gradeController_1.default.assign);
 gradeRouter.get("/:studentId", gradeController_1.default.getStudentGrades);
 gradeRouter.get("/:courseId/average", gradeController_1.default.getAverageGrades);
-gradeRouter.get("/:studentId/:courseId?", gradeController_1.default.getStudentGrades);
+// gradeRouter.get("/:studentId/:courseId?", GradesController.getStudentGrades);
 exports.default = gradeRouter;

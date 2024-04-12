@@ -1,8 +1,10 @@
-import { Schema } from "mongoose";
+import {Schema, Types} from "mongoose";
 
 type Grades = {
-    studentId: Schema.Types.ObjectId,
-    courseId: Schema.Types.ObjectId,
+    Email: String
+    studentId:Types.ObjectId,
+    courseId: Types.ObjectId,
+    courseTitle: String,
     grade: Number,
     feedback: String,
 }

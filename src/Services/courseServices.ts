@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import courseModel from "../Models/courseSchema";
 import Course from "../Types/course";
 
@@ -24,10 +24,10 @@ class CourseServices{
         return students;
     }
 
-    static assignNewStudent = async (userId: Schema.Types.ObjectId| any, courseId: Schema.Types.ObjectId | any ) => {
+    static assignNewStudent = async (userId: String| any, courseId: String | any ) => {
         const courseData: any = await courseModel.findById(courseId);
         // let students: [Schema.Types.ObjectId] | any =  courseData ? courseData.students:[]
-        console.log(courseData)
+        console.log("course data => "+courseData)
         courseData.students.push(userId);
         console.log(courseData)
         const updatedCourseData = await courseModel.findByIdAndUpdate(courseId, courseData)
@@ -48,7 +48,9 @@ class CourseServices{
         return courseData;
     }
 
-    static getSpecificCourse = async (courseId: Schema.Types.ObjectId) => {
+    static getSpecificCourse = async (courseId: any) => {
+        console.log(courseId)
+        // const courseId = new mongoose.Types.ObjectId(courId)
         const courseData = await courseModel.findById(courseId);
         return courseData;
     }
