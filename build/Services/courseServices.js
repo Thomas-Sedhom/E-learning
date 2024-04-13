@@ -37,7 +37,7 @@ CourseServices.getEnrolledStudents = (courseId) => __awaiter(void 0, void 0, voi
 CourseServices.assignNewStudent = (userId, courseId) => __awaiter(void 0, void 0, void 0, function* () {
     const courseData = yield courseSchema_1.default.findById(courseId);
     // let students: [Schema.Types.ObjectId] | any =  courseData ? courseData.students:[]
-    console.log(courseData);
+    console.log("course data => " + courseData);
     courseData.students.push(userId);
     console.log(courseData);
     const updatedCourseData = yield courseSchema_1.default.findByIdAndUpdate(courseId, courseData);
@@ -54,6 +54,8 @@ CourseServices.getAllCourses = () => __awaiter(void 0, void 0, void 0, function*
     return courseData;
 });
 CourseServices.getSpecificCourse = (courseId) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(courseId);
+    // const courseId = new mongoose.Types.ObjectId(courId)
     const courseData = yield courseSchema_1.default.findById(courseId);
     return courseData;
 });

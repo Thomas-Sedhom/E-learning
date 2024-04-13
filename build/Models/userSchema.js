@@ -27,7 +27,6 @@ let userSchema = new mongoose_1.default.Schema({
     role: {
         type: String,
         require: true,
-        default: "student"
     },
     createdAt: {
         type: Date,
@@ -39,8 +38,7 @@ let JoiVal = joi_1.default.object({
     lastName: joi_1.default.string().required,
     Email: joi_1.default.string().email().required,
     password: joi_1.default.string().required,
-    role: joi_1.default.string().required
 });
 exports.JoiVal = JoiVal;
-let UserModel = mongoose_1.default.model("users", userSchema);
+const UserModel = mongoose_1.default.model("users", userSchema);
 exports.UserModel = UserModel;

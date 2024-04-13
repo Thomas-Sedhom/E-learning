@@ -8,6 +8,6 @@ gradeRouter.get("/:studentId", GradesController.getStudentGrades);
 
 gradeRouter.get("/:courseId/average", GradesController.getAverageGrades);
 
-gradeRouter.get("/:studentId/:courseId?", GradesController.getStudentGrades);
+// gradeRouter.get("/:studentId/:courseId?", GradesController.getStudentGrades);
 
 export default gradeRouter;

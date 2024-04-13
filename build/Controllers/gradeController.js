@@ -14,12 +14,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const gradeServices_1 = __importDefault(require("../Services/gradeServices"));
+const gradeServices_2 = __importDefault(require("../Services/gradeServices"));
 class GradeController {
 }
 _a = GradeController;
 GradeController.assign = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const grades = req.body;
+        const getStudentID = yield gradeServices_2.default.getStudentIdByEmail(grades.Email);
+        grades.studentId = getStudentID;
+        console.log(grades);
         const userData = yield gradeServices_1.default.assign(grades);
         res.send(userData);
     }

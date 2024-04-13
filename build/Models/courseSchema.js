@@ -39,8 +39,12 @@ let courseSchema = new mongoose_1.default.Schema({
         type: mongoose_1.Schema.Types.ObjectId,
         require: true,
     },
+    professorName: {
+        type: String,
+        require: true,
+    },
     students: {
-        type: [mongoose_1.Schema.Types.ObjectId],
+        type: [String],
         default: []
     },
     createdAt: {

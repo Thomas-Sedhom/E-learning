@@ -20,8 +20,8 @@ _a = CourseController;
 CourseController.creatCourse = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let professorId = req.params.professorId;
-        const { title, description, image } = req.body;
-        let course = { title, description, image, professorId };
+        const { title, description, professorName, image } = req.body;
+        let course = { title, description, image, professorName, professorId };
         const courseData = yield courseServices_1.default.creatCourse(course);
         res.send(courseData);
     }
@@ -55,6 +55,7 @@ CourseController.getEnrolledStudents = (req, res) => __awaiter(void 0, void 0, v
         const courseId = req.params.courseId;
         const EnrolledStudents = yield courseServices_1.default.getEnrolledStudents(courseId);
         const students = [...EnrolledStudents];
+        console.log(students);
         res.json(students);
     }
     catch (err) {
@@ -85,8 +86,8 @@ CourseController.dropStudent = (req, res) => __awaiter(void 0, void 0, void 0, f
 });
 CourseController.getAllCourses = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const updatedCourseData = yield courseServices_1.default.getAllCourses();
-        res.json(updatedCourseData);
+        const allCourses = yield courseServices_1.default.getAllCourses();
+        res.json(allCourses);
     }
     catch (err) {
         console.log(err);

@@ -15,8 +15,12 @@ let courseSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         require: true,
     },
+    professorName: {
+        type: String,
+        require: true,
+    },
     students: {
-        type: [Schema.Types.ObjectId],
+        type: [String],
         default: []
     },
     createdAt: {

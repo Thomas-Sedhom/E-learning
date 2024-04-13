@@ -1,10 +1,10 @@
 import {UserModel, JoiVal} from "../Models/userSchema";
 import User from "../Types/user";
-import HashBass from "../helpers/auth";
+import {HashBass, ComparePass} from "../Middlewares/bcrypt.middleware";
 
 class UserServices{
     static creatUser = async (user: User) => {
-        let hash:any = await  HashBass(user.password);
+        let hash:any = await HashBass(user.password);
 
         if(hash)
             user.password = hash;
@@ -14,6 +14,11 @@ class UserServices{
 
         console.log("services")
         const userData = await UserModel.create(user);
+        return userData;
+    }
+
+    static getUser = async (userId: string) => {
+        const userData = await UserModel.findById(userId);
         return userData;
     }
 
